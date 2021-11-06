@@ -6,6 +6,7 @@
     <meta charset ="UTF-8">
 	  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <style>
     .punctuation:hover {
       cursor: pointer;
@@ -16,26 +17,18 @@
 <body>
   <div class="title">garbag,e island</div> 
   <div class="comma">,<br><br><br><br><br><br></div>     
-  <div class="commas punctuation">,,,  ,<br>  , ,,  ,,,     ,     ,<br><br>,,<br><br><br></div>
   <script>
     const body = document.querySelector('body')
     const audio = new Audio('ocean.mp3')
     const comma = document.querySelector('.comma')
-    const commas = document.querySelector('.commas')
     let glyphs = ['*','.', ';',';', '-','_']
 
 
     comma.addEventListener('click', () => {
       audio.play()
-      comma.style.opacity = '0'
+      $(comma).fadeOut(2500)
       setTimeout(function(){
         comma.remove()
-      }, 2500);
-    })
-    commas.addEventListener('click', () => {
-      commas.style.opacity = '0'
-      setTimeout(function(){
-        commas.remove()
       }, 2500);
     })
     function generateCommas(n, punctuation) {
@@ -51,10 +44,10 @@
         p.style.position = 'absolute'
         p.style.left = Math.random()*100 + '%'
         p.style.top = Math.random()*100 + '%'
-        body.appendChild(p)
+        $(p).hide().appendTo(body).fadeIn(2500);
 
         p.addEventListener('click', () => {
-          p.style.opacity = '0'
+          $(p).fadeOut(2500)
           setTimeout(function(){
             p.remove()
           }, 2500);
@@ -63,7 +56,7 @@
     }
     setInterval(function(){
       generateCommas(Math.floor(Math.random()*4), glyphs[Math.floor(Math.random()*glyphs.length)])
-    },1000)
+    },500)
 
   </script>
 </body>

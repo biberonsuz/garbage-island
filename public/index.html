@@ -6,6 +6,7 @@
       <meta charset ="UTF-8">
 	  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
       <link rel="stylesheet" type="text/css" href="style.css">
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 <body>   
     <div class="title">garbag,e island</div> 
@@ -28,39 +29,34 @@
         </div>
     </div>
     <script>
-        const body = document.querySelector('body')
-        const comma = document.querySelector('.comma')
         let commaCounter = 0
-        let textArray = document.querySelectorAll('.wrapper .text')
 
-        comma.addEventListener('click', () => {
+        $(".comma").click(function(){
             commaCounter += 1
             if (commaCounter == 1) {
-                document.querySelector('#clicktext').remove()
-                document.querySelector('.commas').style.display = 'block'
+                $("#clicktext").fadeOut(2500);
+                $(".commas").fadeIn(2500);
             } else if (commaCounter == 2) {
-                textArray[0].style.display = 'block'
-                textArray[0].style.opacity = '1'
+                $( ".text" ).eq(0).fadeIn(2500)
             } else if (commaCounter == 3) {
-                textArray[1].style.display = 'block'
-                textArray[1].style.opacity = '1'
+                $( ".text" ).eq(1).fadeIn(2500)
             } else if (commaCounter == 4) {
-                textArray[0].style.opacity = '0'
-                textArray[1].style.opacity = '0'
+                $( ".text" ).eq(0).fadeOut(2500)
+                $( ".text" ).eq(1).fadeOut(2500)
                 setTimeout(function(){
-                    textArray[1].remove();
-                    textArray[2].style.display = 'block'
-                    textArray[2].style.opacity = '1'
+                    $( ".text" ).eq(2).fadeIn(2500)
                 }, 2500);
             } else if (commaCounter == 5) {
-                textArray[2].style.opacity = '0'
+                $( ".text" ).eq( 2 ).fadeOut(2500)
                 setTimeout(function(){
-                    textArray[2].remove();
-                    window.location.replace('main.html')
+                    $( ".commas" ).fadeOut(2500)   
                 }, 2500);
-                
+                setTimeout(function(){
+                    window.location.replace('main.html')                    
+                }, 5000);  
             }
-        })
+        });
+        
     </script>
 </body>
 </html>
